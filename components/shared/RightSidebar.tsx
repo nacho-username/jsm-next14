@@ -5,20 +5,20 @@ import RenderTag from './RenderTag';
 
 const RightSidebar = () => {
   const hotQuestions = [
-    { _id: 1, title: 'How do I get started with Next.js?' },
-    { _id: 2, title: 'Case Study: How I built a full-stack app in 3 days' },
-    { _id: 3, title: 'Best practices for building a SaaS product' },
-    { _id: 4, title: 'Why I switched from React to SvelteKit' },
-    { _id: 5, title: 'What is the best way to learn React in 2022?' },
+    { _id: '1', title: 'How do I get started with Next.js?' },
+    { _id: '2', title: 'Case Study: How I built a full-stack app in 3 days' },
+    { _id: '3', title: 'Best practices for building a SaaS product' },
+    { _id: '4', title: 'Why I switched from React to SvelteKit' },
+    { _id: '5', title: 'What is the best way to learn React in 2022?' },
   ];
 
   const popularTags = [
-    { _id: 1, name: 'React', totalQuestions: 5 },
-    { _id: 2, name: 'Next.js', totalQuestions: 3 },
-    { _id: 3, name: 'TailwindCSS', totalQuestions: 2 },
-    { _id: 4, name: 'SvelteKit', totalQuestions: 7 },
-    { _id: 5, name: 'GraphQL', totalQuestions: 4 },
-    { _id: 6, name: 'TypeScript', totalQuestions: 6 },
+    { _id: '1', name: 'React', totalQuestions: 5 },
+    { _id: '2', name: 'Next.js', totalQuestions: 3 },
+    { _id: '3', name: 'TailwindCSS', totalQuestions: 2 },
+    { _id: '4', name: 'SvelteKit', totalQuestions: 7 },
+    { _id: '5', name: 'GraphQL', totalQuestions: 4 },
+    { _id: '6', name: 'TypeScript', totalQuestions: 6 },
   ];
   return (
     <section className="background-light900_dark200 light-border shadow-light-300 custom-scrollbar sticky right-0 top-0 flex h-screen w-[350px] flex-col justify-between overflow-y-auto border-l p-6 pt-36 max-xl:hidden dark:shadow-none">

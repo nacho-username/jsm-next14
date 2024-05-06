@@ -5,61 +5,82 @@ import Filter from '@/components/shared/Filter';
 import { HomePageFilters } from '@/constants/filters';
 import HomeFilters from '@/components/home/HomeFilters';
 import NoResult from '@/components/shared/NoResult';
+import QuestionCard from '@/components/cards/QuestionCard';
 
 const questions = [
   {
-    _id: 1,
+    key: '1',
+    _id: '1',
     title: 'How to learn React?',
     tags: [
-      { _id: 1, name: 'python' },
-      { _id: 2, name: 'sql' },
+      { _id: '1', name: 'python' },
+      { _id: '2', name: 'sql' },
     ],
-    author: 'Bruce Banner',
+    author: {
+      _id: '1',
+      name: 'Bruce Banner',
+      picture: 'url_to_picture',
+    },
     upvotes: 10,
-    answers: 5,
     views: 100,
-    createdAt: '2021-09-01',
+    answers: [],
+    createdAt: '2024-05-04T10:30:00',
   },
   {
-    _id: 2,
+    key: '2',
+    _id: '2',
     title: 'How to learn Angular?',
     tags: [
-      { _id: 1, name: 'python' },
-      { _id: 2, name: 'sql' },
+      { _id: '1', name: 'python' },
+      { _id: '2', name: 'sql' },
     ],
-    author: 'Bruce Wayne',
-    upvotes: 5,
-    answers: 2,
-    views: 43,
-    createdAt: '2021-09-07',
+    author: {
+      _id: '2',
+      name: 'Bruce Wayne',
+      picture: 'url_to_picture',
+    },
+    upvotes: 5000000,
+    views: 430000,
+    answers: [],
+    createdAt: '2023-04-29T12:45:00',
   },
   {
-    _id: 3,
+    key: '3',
+    _id: '3',
     title: 'How to learn Vue?',
     tags: [
-      { _id: 1, name: 'javascript' },
-      { _id: 2, name: 'css' },
-      { _id: 3, name: 'html' },
+      { _id: '1', name: 'javascript' },
+      { _id: '2', name: 'css' },
+      { _id: '3', name: 'html' },
     ],
-    author: 'Peter Parker',
-    upvotes: 2,
-    answers: 3,
-    views: 30,
-    createdAt: '2021-09-10',
+    author: {
+      _id: '3',
+      name: 'Peter Parker',
+      picture: 'url_to_picture',
+    },
+    upvotes: 20000,
+    views: 3000000,
+    answers: [],
+    createdAt: '2024-04-23T15:20:00',
   },
   {
-    _id: 4,
+    key: '4',
+    _id: '4',
     title: 'How to learn Svelte?',
     tags: [
-      { _id: 1, name: 'javascript' },
-      { _id: 2, name: 'css' },
-      { _id: 3, name: 'html' },
+      { _id: '1', name: 'javascript' },
+      { _id: '2', name: 'css' },
+      { _id: '3', name: 'html' },
     ],
-    author: 'Tony Stark',
+    author: {
+      _id: '4',
+      name: 'Tony Stark',
+      picture: 'url_to_picture',
+    },
     upvotes: 8,
-    answers: 7,
     views: 80,
-    createdAt: '2021-09-15',
+    answers: [],
+    createdAt: '2024-04-24T08:00:00',
   },
 ];
 
@@ -103,7 +124,19 @@ const Home = () => {
             linkTitle="Ask a Question"
           />
         )}
-        {questions.map((question) => 'Question Card')}
+        {questions.map((question) => (
+          <QuestionCard
+            key={question._id}
+            _id={question._id}
+            title={question.title}
+            tags={question.tags}
+            author={question.author}
+            upvotes={question.upvotes}
+            answers={question.answers}
+            views={question.views}
+            createdAt={question.createdAt}
+          />
+        ))}
       </div>
     </>
   );
