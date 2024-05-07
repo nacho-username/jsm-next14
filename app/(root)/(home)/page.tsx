@@ -11,6 +11,8 @@ import { getQuestions } from '@/lib/actions/question.action';
 const Home = async () => {
   const result = await getQuestions({});
 
+  if (!result) return null;
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -45,7 +47,7 @@ const Home = async () => {
         {result.questions.length === 0 && (
           <NoResult
             title="There's no questions to show"
-            description="Be the fiurst to break the silence! 🚀 Ask a Question and kickstart the discussion. Your question could be the next big thing others learn from. Get involved! 💡 "
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. Your question could be the next big thing others learn from. Get involved! 💡 "
             link="/ask-question"
             linkTitle="Ask a Question"
           />
