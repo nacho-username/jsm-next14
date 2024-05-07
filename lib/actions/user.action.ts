@@ -8,7 +8,6 @@ import {
   UpdateUserParams,
 } from './shared.types';
 import { revalidatePath } from 'next/cache';
-import path from 'path';
 import Question from '@/database/question.model';
 
 export async function getUserById(params: any) {
@@ -64,6 +63,7 @@ export async function deleteUser(params: DeleteUserParams) {
     }
 
     // get user questions
+    // eslint-disable-next-line no-unused-vars
     const userQuestionIds = await Question.find({ author: user._id }).distinct(
       '_id'
     );
