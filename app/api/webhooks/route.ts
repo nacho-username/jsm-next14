@@ -52,6 +52,8 @@ export async function POST(req: Request) {
   }
 
   const eventType = evt.type;
+
+  console.log(evt.type);
   if (eventType === 'user.created') {
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
@@ -65,7 +67,9 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ message: 'OK', user: mongoUser });
-  } else if (eventType === 'user.updated') {
+  }
+
+  if (eventType === 'user.updated') {
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
 
