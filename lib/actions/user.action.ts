@@ -43,7 +43,7 @@ export async function updateUser(params: UpdateUserParams) {
 
     console.log('Params: ', params);
 
-    await User.findByIdAndUpdate({ clerkId }, updateData, {
+    await User.findByIdAndUpdate(clerkId, updateData, {
       new: true,
     });
 
