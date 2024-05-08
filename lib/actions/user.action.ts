@@ -2,7 +2,6 @@
 
 import User from '@/database/user.model';
 import { connectToDatabase } from '../mongoose';
-import { ObjectId } from 'mongodb';
 import {
   CreateUserParams,
   DeleteUserParams,
@@ -42,15 +41,11 @@ export async function updateUser(params: UpdateUserParams) {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
 
-    const objectId = new ObjectId(clerkId);
-
-    await User.findByIdAndUpdate(objectId, updateData, { new: true });
-
     console.log('Params: ', params);
 
-    // await User.findByIdAndUpdate({ clerkId }, updateData, {
-    //   new: true,
-    // });
+    await User.findByIdAndUpdate({ clerkId }, updateData, {
+      new: true,
+    });
 
     revalidatePath(path);
   } catch (error: any) {
