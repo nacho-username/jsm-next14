@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
@@ -52,6 +52,8 @@ export async function POST(req: Request) {
   }
 
   const eventType = evt.type;
+
+  console.log(evt.type);
   if (eventType === 'user.created') {
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
@@ -65,7 +67,9 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ message: 'OK', user: mongoUser });
-  } else if (eventType === 'user.updated') {
+  }
+
+  if (eventType === 'user.updated') {
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
 
@@ -90,7 +94,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'OK', user: deletedUser });
   }
-  console.log('Webhook body:', body);
 
   return new Response('', { status: 200 });
 }
