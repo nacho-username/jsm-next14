@@ -9,6 +9,7 @@ import {
 } from './shared.types';
 import { revalidatePath } from 'next/cache';
 import Question from '@/database/question.model';
+import { Types } from 'mongoose';
 
 export async function getUserById(params: any) {
   try {
@@ -43,9 +44,15 @@ export async function updateUser(params: UpdateUserParams) {
 
     console.log('Params: ', params);
 
-    await User.findByIdAndUpdate(clerkId, updateData, {
+    const objectId = new Types.ObjectId(clerkId); // Convert clerkId to ObjectId
+
+    await User.findByIdAndUpdate(objectId, updateData, {
       new: true,
     });
+
+    // await User.findByIdAndUpdate(clerkId, updateData, {
+    //   new: true,
+    // });
 
     revalidatePath(path);
   } catch (error: any) {
