@@ -29,10 +29,10 @@ export async function createUser(params: CreateUserParams) {
     connectToDatabase();
 
     const newUser = await User.create(params);
-
+    console.log('New user created', newUser);
     return newUser;
-  } catch (error) {
-    console.log('Error fetching user');
+  } catch (error: any) {
+    console.log('Error creating user', error.message);
   }
 }
 
@@ -40,14 +40,15 @@ export async function updateUser(params: UpdateUserParams) {
   try {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
+    console.log('Params: ', params);
 
     await User.findByIdAndUpdate({ clerkId }, updateData, {
       new: true,
     });
 
     revalidatePath(path);
-  } catch (error) {
-    console.log('Error fetching user');
+  } catch (error: any) {
+    console.log('Error updating user', error.message);
   }
 }
 
