@@ -44,8 +44,8 @@ export async function updateUser(params: UpdateUserParams) {
 
     console.log('Params: ', params);
 
-    const objectId = new Types.ObjectId(clerkId); // Convert clerkId to ObjectId
-
+    const objectId = new Types.ObjectId(clerkId);
+    console.log('ObjectId: ', objectId);
     await User.findByIdAndUpdate(objectId, updateData, {
       new: true,
     });
