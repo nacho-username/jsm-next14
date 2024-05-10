@@ -42,17 +42,17 @@ export async function updateUser(params: UpdateUserParams) {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
 
-    console.log('Params: ', params);
+    // Find the user by clerkId
+    const user = await User.findOne({ clerkId });
 
-    const objectId = new Types.ObjectId(clerkId);
-    console.log('ObjectId: ', objectId);
-    await User.findByIdAndUpdate(objectId, updateData, {
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // Update the user document
+    await User.findByIdAndUpdate(user._id, updateData, {
       new: true,
     });
-
-    // await User.findByIdAndUpdate(clerkId, updateData, {
-    //   new: true,
-    // });
 
     revalidatePath(path);
   } catch (error: any) {
