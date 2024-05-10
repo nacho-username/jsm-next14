@@ -9,7 +9,7 @@ import {
 } from './shared.types';
 import { revalidatePath } from 'next/cache';
 import Question from '@/database/question.model';
-import { Types } from 'mongoose';
+// import { Types } from 'mongoose';
 
 export async function getUserById(params: any) {
   try {
