@@ -5,11 +5,11 @@ import { connectToDatabase } from '../mongoose';
 import {
   CreateUserParams,
   DeleteUserParams,
+  GetAllUsersParams,
   UpdateUserParams,
 } from './shared.types';
 import { revalidatePath } from 'next/cache';
 import Question from '@/database/question.model';
-// import { Types } from 'mongoose';
 
 export async function getUserById(params: any) {
   try {
@@ -89,3 +89,27 @@ export async function deleteUser(params: DeleteUserParams) {
     console.log('Error fetching user');
   }
 }
+
+export async function getAllUsers(params: GetAllUsersParams) {
+  try {
+    connectToDatabase();
+
+    // const { page = 1, pageSize = 20, filter, searchQuery } = params;
+
+    const users = await User.find({}).sort({ createdAt: -1 });
+
+    return { users };
+  } catch (error) {
+    console.log('Error fetching all users', error);
+    throw error;
+  }
+}
+
+// export async function getAllUsers(params: GetAllUsersParams) {
+//   try {
+//     connectToDatabase()
+//   } catch (error) {
+//     console.log('Error fetching all users', error);
+//     throw error
+//   }
+// }
